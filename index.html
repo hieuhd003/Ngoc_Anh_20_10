@@ -1,115 +1,326 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Một bông hồng dành tặng bạn 🌹</title>
-  <meta name="description" content="Một bông hồng nhỏ gửi tặng bạn nhân ngày 20/10.">
-  <style>
-    :root { --pink:#ff8eb5; --deep:#b8144b; --cream:#fff4f7; }
-    * { box-sizing: border-box; }
-    html, body { margin:0; min-height:100%; }
-    body {
-      min-height:100vh; overflow:hidden; color:#fff7fb;
-      font-family: Georgia, "Times New Roman", serif;
-      background:
-        radial-gradient(ellipse at 50% 100%, rgba(255,112,160,.22), transparent 42%),
-        radial-gradient(ellipse at 15% 20%, rgba(155,41,91,.22), transparent 35%),
-        linear-gradient(145deg,#160a20 0%,#321027 48%,#100b20 100%);
-      display:flex; align-items:center; justify-content:center;
-    }
-    .stars, .petals { position:fixed; inset:0; pointer-events:none; overflow:hidden; }
-    .star { position:absolute; width:3px;height:3px;border-radius:50%;background:#ffe5ef;opacity:.2;animation:twinkle 3s infinite ease-in-out; }
-    @keyframes twinkle { 0%,100%{opacity:.15;transform:scale(.7)} 50%{opacity:.9;transform:scale(1.4)} }
-    .wrap { position:relative; z-index:1; width:min(92vw,700px); text-align:center; padding:28px 16px 38px; }
-    .eyebrow { letter-spacing:.28em; text-transform:uppercase; font: 11px/1.6 Arial,sans-serif; color:#ffc4d8; }
-    h1 { font-size:clamp(30px,6vw,54px); font-weight:normal; line-height:1.1; margin:12px 0 8px; text-shadow:0 0 25px #f05d91a0; }
-    .sub { color:#f7ccda; font:14px/1.7 Arial,sans-serif; margin:0 auto; max-width:420px; }
-    .stage { height: min(52vh,390px); min-height:270px; display:flex; align-items:center; justify-content:center; position:relative; margin:3px auto 4px; }
-    .halo { position:absolute; width:250px;height:250px;border-radius:50%; background:#e83c7b12; box-shadow:0 0 90px 28px #e83c7b17; animation:breathe 4s ease-in-out infinite; }
-    @keyframes breathe { 50% { transform:scale(1.12); opacity:.65; } }
-    svg { width:min(84vw,330px); height:100%; overflow:visible; filter:drop-shadow(0 12px 22px #09030d88); }
-    .stem { stroke:#5da66a; stroke-width:5; fill:none; stroke-linecap:round; stroke-dasharray:300; stroke-dashoffset:300; animation:draw 2s .25s forwards ease-out; }
-    .leaf { fill:#287d4c; stroke:#65bb78; stroke-width:1.5; transform-box:fill-box; transform-origin:bottom left; animation:leafIn 1.1s 1.6s both; }
-    .leaf.two { transform-origin:bottom right; animation-delay:1.8s; }
-    @keyframes draw { to { stroke-dashoffset:0; } }
-    @keyframes leafIn { from { opacity:0; transform:scale(0) rotate(-25deg); } to { opacity:1; transform:scale(1) rotate(0); } }
-    .petal { transform-box:fill-box; transform-origin:center; opacity:0; animation:bloom .9s cubic-bezier(.2,.8,.2,1) forwards; }
-    .p1{animation-delay:.7s}.p2{animation-delay:.95s}.p3{animation-delay:1.15s}.p4{animation-delay:1.35s}.p5{animation-delay:1.55s}.p6{animation-delay:1.75s}.p7{animation-delay:1.95s}.p8{animation-delay:2.1s}
-    @keyframes bloom { from { opacity:0; transform:scale(.08) rotate(-22deg); } to { opacity:1; transform:scale(1) rotate(0); } }
-    .message { font-size:clamp(18px,3vw,23px); line-height:1.6; margin:0 auto 22px; max-width:510px; color:#ffe3ec; }
-    .message strong { color:#ff9cbd; font-weight:normal; }
-    button { border:1px solid #ffb5ce88; border-radius:999px; padding:13px 23px; color:#fff7fb; background:linear-gradient(120deg,#b91e56,#e34f83); font:13px Arial,sans-serif; letter-spacing:.04em; cursor:pointer; box-shadow:0 8px 28px #e34f8333; transition:transform .2s, box-shadow .2s; }
-    button:hover { transform:translateY(-2px); box-shadow:0 12px 34px #e34f8360; }
-    .tiny { margin-top:16px; color:#dba9bb; font:11px Arial,sans-serif; opacity:.8; }
-    .floating { position:absolute; bottom:-30px; color:#ff9cbd; opacity:0; animation:floatUp linear forwards; text-shadow:0 0 12px #ff6a9e; }
-    @keyframes floatUp { 0%{transform:translateY(0) rotate(0);opacity:0} 15%{opacity:.7} 100%{transform:translateY(-110vh) rotate(35deg);opacity:0} }
-    @media (max-height:650px) { .stage{height:38vh;min-height:220px}.halo{width:190px;height:190px}.wrap{padding-top:14px} .message{margin-bottom:12px} }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gửi bạn một bó hồng 🌹</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;overflow-x:hidden;
+ background:radial-gradient(ellipse at 50% 48%,#64203c,#260b20 65%,#100711);
+ color:#fff0f5;text-align:center;
+ font-family:Georgia,serif;
+}
+#stars,#rain{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.star{position:absolute;color:#ffe5b5;animation:twinkle 2s infinite alternate}
+@keyframes twinkle{to{opacity:.15;transform:scale(.5)}}
+main{position:relative;z-index:1;width:100%;max-width:700px;margin:auto;padding:24px 12px 30px}
+.label{font:11px Arial;letter-spacing:4px;color:#ffb5cf}
+h1{font-size:clamp(27px,6vw,43px);font-weight:normal;line-height:1.25;margin:15px 0 8px}
+.intro{font:14px/1.8 Arial;color:#f5cbd9}
+.stage{height:clamp(350px,65vw,480px);position:relative;display:grid;place-items:center}
+.glow{position:absolute;width:260px;height:260px;border-radius:50%;background:#ff32651c;box-shadow:0 0 100px #ff367d40}
+#heart{
+ position:absolute;z-index:5;border:0;background:none;color:#ff4c83;
+ font-size:115px;cursor:pointer;
+ filter:drop-shadow(0 0 20px #ff4388);
+ animation:beat 1.1s infinite;
+}
+#heart span{display:block;font:11px Arial;letter-spacing:2px;color:#ffd5e2;margin-top:12px}
+@keyframes beat{
+ 0%,100%{transform:scale(1)}
+ 15%{transform:scale(1.15)}
+ 30%{transform:scale(.98)}
+ 45%{transform:scale(1.2)}
+}
+#bouquet{
+ width:min(100%,500px);height:100%;overflow:visible;
+ opacity:0;transform:translateY(25px) scale(.7);
+ transition:opacity 1s,transform 1.4s cubic-bezier(.2,.8,.2,1);
+}
+body.open #bouquet{opacity:1;transform:translateY(0) scale(1)}
+body.open #heart{opacity:0;pointer-events:none;transition:opacity .6s}
+.flower{
+ opacity:0;transform-box:fill-box;transform-origin:center;
+}
+body.open .flower{animation:flowerOpen 1.1s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes flowerOpen{
+ 0%{opacity:0;transform:scale(.05) rotate(-25deg)}
+ 70%{opacity:1;transform:scale(1.12) rotate(4deg)}
+ 100%{opacity:1;transform:scale(1) rotate(0)}
+}
+.stem{fill:none;stroke:#4caa69;stroke-width:4;stroke-linecap:round}
+.leaf{fill:#287e4d;stroke:#76c987;stroke-width:1.5}
+.message{
+ max-width:520px;margin:4px auto 20px;
+ color:#ffe0eb;font-size:clamp(17px,3.5vw,22px);
+ line-height:1.7;min-height:80px;
+ opacity:0;transition:opacity 1s .7s;
+}
+body.open .message{opacity:1}
+.message em{color:#ff8fb4;font-style:normal}
+button.action{
+ border:1px solid #ffb3cc;border-radius:30px;
+ padding:13px 21px;margin:5px;
+ background:linear-gradient(120deg,#a9164c,#ed4c80);
+ color:white;cursor:pointer;font-size:13px;
+ box-shadow:0 5px 25px #ff397b35;
+}
+.fall{
+ position:absolute;top:-30px;
+ animation:fall linear forwards;
+ text-shadow:0 0 10px currentColor;
+}
+@keyframes fall{
+ 0%{transform:translate(0,-5vh) rotate(0);opacity:0}
+ 15%{opacity:.9}
+ 100%{transform:translate(var(--drift),110vh) rotate(var(--spin));opacity:0}
+}
+.footer{font:10px Arial;letter-spacing:2px;color:#dba6bb;margin-top:20px}
+@media(max-height:700px){
+ main{padding-top:12px}
+ .stage{height:350px}
+ h1{margin:8px}
+}
+</style>
 </head>
 <body>
-  <div class="stars" id="stars"></div>
-  <div class="petals" id="petals"></div>
-  <main class="wrap">
-    <div class="eyebrow">Gửi một chút dịu dàng · 20/10</div>
-    <h1>Chúc mừng ngày<br>Phụ nữ Việt Nam</h1>
-    <p class="sub">Có một bông hồng nhỏ dành riêng cho bạn hôm nay…</p>
-    <div class="stage" aria-label="Bông hồng đỏ đang nở">
-      <div class="halo"></div>
-      <svg viewBox="0 0 300 340" role="img" aria-label="Bông hồng đỏ">
-        <defs>
-          <linearGradient id="petalRed" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff9ab6"/><stop offset=".42" stop-color="#ed285d"/><stop offset="1" stop-color="#8e0739"/></linearGradient>
-          <linearGradient id="petalLight" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffc0d1"/><stop offset=".55" stop-color="#ff4d7f"/><stop offset="1" stop-color="#b20d48"/></linearGradient>
-          <linearGradient id="stemGreen" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#1d673c"/><stop offset=".5" stop-color="#72c77c"/><stop offset="1" stop-color="#1e683d"/></linearGradient>
-        </defs>
-        <path class="stem" d="M151 150 C150 208 160 260 151 319" stroke="url(#stemGreen)"/>
-        <path class="leaf" d="M151 244 C112 235 91 210 91 189 C126 191 151 214 151 244Z"/>
-        <path class="leaf two" d="M154 274 C188 258 211 235 212 211 C180 219 158 240 154 274Z"/>
-        <g transform="translate(150 112)">
-          <path class="petal p1" d="M-7 20 C-58 11 -69 -26 -42 -51 C-20 -70 4 -49 7 -22 C24 -57 55 -56 67 -29 C80 3 43 26 8 32Z" fill="url(#petalRed)"/>
-          <path class="petal p2" d="M-5 20 C-49 37 -82 12 -72 -18 C-64 -43 -37 -45 -17 -24 C-31 -59 -7 -81 19 -69 C48 -55 34 -16 12 15Z" fill="url(#petalLight)"/>
-          <path class="petal p3" d="M5 22 C-8 -15 16 -48 42 -36 C65 -25 53 4 26 25 C61 11 80 36 62 58 C43 81 9 58 5 22Z" fill="url(#petalRed)"/>
-          <path class="petal p4" d="M-5 27 C-39 1 -33 -34 -9 -41 C14 -47 26 -17 11 8 C37 -17 64 0 53 25 C42 51 5 51 -5 27Z" fill="url(#petalLight)"/>
-          <path class="petal p5" d="M-17 31 C-53 52 -76 31 -62 8 C-50 -11 -27 0 -15 15 C-26 -14 -5 -31 17 -17 C39 -3 15 25 -17 31Z" fill="url(#petalRed)"/>
-          <path class="petal p6" d="M-4 18 C-28 -1 -16 -27 4 -25 C23 -23 23 -4 9 9 C30 -5 44 13 29 28 C14 42 -1 31 -4 18Z" fill="#b90d48"/>
-          <path class="petal p7" d="M-1 13 C-11 0 -1 -14 9 -10 C19 -6 12 6 5 11 C17 7 23 18 14 25 C4 30 -3 22 -1 13Z" fill="#ffb1c9"/>
-          <path class="petal p8" d="M-30 -35 C-18 -52 0 -43 3 -28 C-9 -33 -15 -22 -12 -13 C-28 -14 -39 -21 -30 -35Z" fill="#ffb4c9" opacity=".8"/>
-        </g>
-        <path d="M119 94 C125 67 147 55 166 65" fill="none" stroke="#ffb6cb" stroke-width="2" stroke-linecap="round" opacity=".65"/>
-      </svg>
-    </div>
-    <p class="message" id="message">Chúc bạn luôn <strong>xinh đẹp, rạng rỡ</strong>, bình an và được yêu thương thật nhiều. Mong những điều ngọt ngào nhất sẽ đến với bạn — hôm nay và cả những ngày sau. 🌹</p>
-    <button id="surprise">Nhấn để nhận thêm một điều dễ thương ✨</button>
-    <div class="tiny">Một bông hồng nhỏ, thay lời chúc chân thành.</div>
-  </main>
-  <script>
-    const stars = document.getElementById('stars');
-    for (let i=0;i<70;i++) {
-      const s=document.createElement('i'); s.className='star';
-      s.style.left=Math.random()*100+'%'; s.style.top=Math.random()*100+'%';
-      s.style.animationDelay=(Math.random()*4)+'s'; s.style.animationDuration=(2+Math.random()*3)+'s';
-      stars.appendChild(s);
-    }
-    const petalLayer=document.getElementById('petals');
-    function floatPetal() {
-      const p=document.createElement('span'); p.className='floating'; p.textContent=Math.random()>.5?'✿':'♥';
-      p.style.left=Math.random()*100+'%'; p.style.fontSize=(12+Math.random()*18)+'px';
-      p.style.animationDuration=(7+Math.random()*7)+'s'; petalLayer.appendChild(p);
-      setTimeout(()=>p.remove(),15000);
-    }
-    setInterval(floatPetal,650);
-    const messages = [
-      'Chúc bạn luôn <strong>xinh đẹp, rạng rỡ</strong>, bình an và được yêu thương thật nhiều. Mong những điều ngọt ngào nhất sẽ đến với bạn — hôm nay và cả những ngày sau. 🌹',
-      'Bạn xứng đáng với mọi điều dịu dàng trên thế gian này. Chúc nụ cười luôn ở trên môi và trái tim luôn có thật nhiều niềm vui. 💗',
-      'Gửi bạn một bông hồng, một lời chúc và thật nhiều thương mến. Chúc ngày 20/10 của bạn ngập tràn hạnh phúc! ✨',
-      'Mong bạn luôn tự tin tỏa sáng theo cách riêng của mình, được trân trọng, được nâng niu và luôn hạnh phúc. 🌷'
-    ];
-    let index=0;
-    document.getElementById('surprise').addEventListener('click',()=>{
-      index=(index+1)%messages.length;
-      document.getElementById('message').innerHTML=messages[index];
-      for(let i=0;i<8;i++) setTimeout(floatPetal,i*100);
-    });
-  </script>
+<div id="stars"></div>
+<div id="rain"></div>
+
+<main>
+ <div class="label">MỘT MÓN QUÀ NHỎ · 20 / 10</div>
+ <h1>Chúc mừng ngày<br>Phụ nữ Việt Nam</h1>
+ <p class="intro">Có một bó hoa đặc biệt dành riêng cho bạn…</p>
+
+ <section class="stage">
+  <div class="glow"></div>
+  <button id="heart" aria-label="Mở bó hoa">
+   ♥<span>CHẠM VÀO TRÁI TIM ✨</span>
+  </button>
+
+  <svg id="bouquet" viewBox="0 0 500 480"
+       role="img" aria-label="Bó hoa hồng đỏ được vẽ bằng SVG">
+   <defs>
+    <linearGradient id="red" x1="0" y1="0" x2="1" y2="1">
+     <stop stop-color="#ffb6ca"/>
+     <stop offset=".3" stop-color="#f72d68"/>
+     <stop offset=".7" stop-color="#bd073e"/>
+     <stop offset="1" stop-color="#5c0925"/>
+    </linearGradient>
+    <linearGradient id="pink" x1="0" y1="0" x2="1" y2="1">
+     <stop stop-color="#ffd9e5"/>
+     <stop offset=".5" stop-color="#ff719c"/>
+     <stop offset="1" stop-color="#bf104b"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+     <stop stop-color="#fff1f5"/>
+     <stop offset=".45" stop-color="#f5a5c0"/>
+     <stop offset="1" stop-color="#8c1740"/>
+    </linearGradient>
+    <linearGradient id="ribbon" x1="0" y1="0" x2="1" y2="1">
+     <stop stop-color="#ffb6cc"/>
+     <stop offset=".45" stop-color="#d51b50"/>
+     <stop offset="1" stop-color="#6b092b"/>
+    </linearGradient>
+
+    <!-- Một bông hồng: các lớp cánh vẽ trực tiếp bằng SVG -->
+    <g id="rose">
+     <path d="M-5 18 C-48 15 -58 -20 -35 -43
+       C-16 -62 5 -42 6 -19 C25 -54 55 -42 58 -17
+       C63 9 32 28 5 31Z" fill="url(#red)"/>
+     <path d="M-8 20 C-39 39 -65 13 -50 -12
+       C-40 -34 -16 -22 -9 -4
+       C-25 -35 -3 -51 18 -34
+       C42 -14 15 12 -8 20Z" fill="url(#pink)"/>
+     <path d="M4 23 C-11 -8 12 -36 35 -21
+       C55 -7 39 15 19 29
+       C44 17 60 38 41 54
+       C20 70 1 46 4 23Z" fill="url(#red)"/>
+     <path d="M-10 23 C-34 2 -28 -27 -8 -31
+       C13 -35 25 -10 8 9
+       C30 -9 47 8 34 29
+       C21 47 -5 41 -10 23Z" fill="url(#pink)"/>
+     <path d="M-12 17 C-29 -1 -11 -23 5 -15
+       C20 -8 12 7 3 13
+       C19 5 30 20 18 30
+       C5 40 -9 28 -12 17Z" fill="#bd1045"/>
+     <path d="M-3 12 C-11 1 -1 -8 7 -2
+       C14 5 4 14 -3 12Z" fill="#ffb2c8"/>
+     <path d="M-32 -29 Q-17 -46 -3 -32"
+       fill="none" stroke="#ffdce6" stroke-width="2" opacity=".8"/>
+    </g>
+
+    <g id="leaves">
+     <path d="M0 0 C-30 -35 -57 -22 -52 -5
+       C-37 14 -13 12 0 0Z" class="leaf"/>
+     <path d="M0 0 C26 -35 53 -26 51 -10
+       C37 10 13 12 0 0Z" class="leaf"/>
+     <path d="M-2 0 L-40 -8 M2 0 L39 -12"
+       stroke="#a3e5a9" fill="none"/>
+    </g>
+   </defs>
+
+   <!-- Cành hoa -->
+   <g class="stems">
+    <path class="stem" d="M250 245 Q235 320 250 404"/>
+    <path class="stem" d="M180 235 Q185 322 235 406"/>
+    <path class="stem" d="M320 235 Q315 325 264 406"/>
+    <path class="stem" d="M130 264 Q157 344 222 407"/>
+    <path class="stem" d="M370 264 Q341 344 278 407"/>
+    <path class="stem" d="M220 275 Q210 340 244 405"/>
+    <path class="stem" d="M285 280 Q298 350 258 405"/>
+    <use href="#leaves" x="194" y="335" transform="rotate(-15 194 335)"/>
+    <use href="#leaves" x="301" y="342" transform="rotate(18 301 342)"/>
+    <use href="#leaves" x="165" y="359" transform="rotate(-25 165 359)"/>
+    <use href="#leaves" x="327" y="321" transform="rotate(25 327 321)"/>
+    <use href="#leaves" x="243" y="375" transform="rotate(-8 243 375)"/>
+   </g>
+
+   <!-- Giấy gói phía sau -->
+   <path d="M75 215 Q155 260 184 278
+     L225 422 Q135 393 105 330Z"
+     fill="url(#paper)" stroke="#ffdce6" stroke-width="2"/>
+   <path d="M425 215 Q345 260 316 278
+     L275 422 Q365 393 395 330Z"
+     fill="url(#paper)" stroke="#ffdce6" stroke-width="2"/>
+
+   <!-- Mặt giấy gói trước -->
+   <path d="M92 248 Q150 282 205 284
+     Q250 310 295 284 Q350 282 408 248
+     L352 374 Q250 428 148 374Z"
+     fill="url(#paper)" stroke="#ffc4d7" stroke-width="2"/>
+   <path d="M91 248 Q142 294 178 313 L151 371Z"
+     fill="#fff2f6" opacity=".65"/>
+   <path d="M409 248 Q358 294 322 313 L349 371Z"
+     fill="#fff2f6" opacity=".6"/>
+
+   <!-- 10 bông hồng, mỗi bông có thời gian nở khác nhau -->
+   <g class="flower" style="animation-delay:.15s">
+    <use href="#rose" transform="translate(150 212) scale(.72)"/>
+   </g>
+   <g class="flower" style="animation-delay:.35s">
+    <use href="#rose" transform="translate(205 178) scale(.82)"/>
+   </g>
+   <g class="flower" style="animation-delay:.5s">
+    <use href="#rose" transform="translate(270 172) scale(.9)"/>
+   </g>
+   <g class="flower" style="animation-delay:.65s">
+    <use href="#rose" transform="translate(340 211) scale(.75)"/>
+   </g>
+   <g class="flower" style="animation-delay:.8s">
+    <use href="#rose" transform="translate(121 260) scale(.72)"/>
+   </g>
+   <g class="flower" style="animation-delay:1s">
+    <use href="#rose" transform="translate(183 244) scale(.92)"/>
+   </g>
+   <g class="flower" style="animation-delay:1.2s">
+    <use href="#rose" transform="translate(250 237) scale(1.02)"/>
+   </g>
+   <g class="flower" style="animation-delay:1.4s">
+    <use href="#rose" transform="translate(320 252) scale(.9)"/>
+   </g>
+   <g class="flower" style="animation-delay:1.6s">
+    <use href="#rose" transform="translate(208 293) scale(.77)"/>
+   </g>
+   <g class="flower" style="animation-delay:1.8s">
+    <use href="#rose" transform="translate(283 294) scale(.78)"/>
+   </g>
+
+   <!-- Nơ lớn ở cuống bó hoa -->
+   <g class="flower" style="animation-delay:2.2s">
+    <path d="M239 378 Q190 341 172 370
+      Q160 392 231 405 L207 435
+      Q204 452 239 428Z"
+      fill="url(#ribbon)" stroke="#ffb6cc" stroke-width="2"/>
+    <path d="M261 378 Q310 341 328 370
+      Q340 392 269 405 L293 435
+      Q296 452 261 428Z"
+      fill="url(#ribbon)" stroke="#ffb6cc" stroke-width="2"/>
+    <path d="M235 396 L229 452 L250 439
+      L271 452 L265 396Z"
+      fill="url(#ribbon)" stroke="#ffb6cc" stroke-width="2"/>
+    <ellipse cx="250" cy="391" rx="22" ry="15"
+      fill="url(#ribbon)" stroke="#ffd1df" stroke-width="2"/>
+    <text x="250" y="418" text-anchor="middle"
+      font-size="10" fill="#ffe7bf" font-style="italic">For You</text>
+   </g>
+  </svg>
+ </section>
+
+ <p class="message" id="message">
+ Chúc bạn luôn <em>xinh đẹp, rạng rỡ</em>, bình an và được yêu thương thật nhiều.
+ Mong những điều ngọt ngào nhất sẽ nở hoa trong cuộc sống của bạn. 🌹
+ </p>
+
+ <div>
+  <button class="action" id="wish">♡ Nhận thêm lời chúc</button>
+  <button class="action" id="again">↻ Mở lại bó hoa</button>
+ </div>
+ <div class="footer">GỬI TRỌN YÊU THƯƠNG · 20 / 10</div>
+</main>
+
+<script>
+const stars=document.getElementById('stars');
+const rain=document.getElementById('rain');
+
+for(let i=0;i<75;i++){
+ const s=document.createElement('span');
+ s.className='star';s.textContent='✦';
+ s.style.left=Math.random()*100+'%';
+ s.style.top=Math.random()*100+'%';
+ s.style.fontSize=(4+Math.random()*8)+'px';
+ s.style.animationDelay=Math.random()*3+'s';
+ stars.appendChild(s);
+}
+
+function fall(){
+ const el=document.createElement('span');
+ el.className='fall';
+ el.textContent=Math.random()>.45?'♥':['❀','✿','🌸'][Math.floor(Math.random()*3)];
+ el.style.left=Math.random()*100+'%';
+ el.style.fontSize=(12+Math.random()*17)+'px';
+ el.style.color=Math.random()>.5?'#ff8fb5':'#ffd1e0';
+ el.style.animationDuration=(6+Math.random()*7)+'s';
+ el.style.setProperty('--drift',((Math.random()-.5)*160)+'px');
+ el.style.setProperty('--spin',((Math.random()-.5)*500)+'deg');
+ rain.appendChild(el);
+ setTimeout(()=>el.remove(),14000);
+}
+
+let rainTimer;
+function openGift(){
+ document.body.classList.add('open');
+ for(let i=0;i<30;i++)setTimeout(fall,i*90);
+ clearInterval(rainTimer);
+ rainTimer=setInterval(fall,450);
+}
+document.getElementById('heart').addEventListener('click',openGift);
+
+const wishes=[
+'Chúc bạn luôn <em>xinh đẹp, rạng rỡ</em>, bình an và được yêu thương thật nhiều. Mong những điều ngọt ngào nhất sẽ nở hoa trong cuộc sống của bạn. 🌹',
+'Bạn xứng đáng với mọi điều <em>dịu dàng nhất</em> trên thế gian. Mong nụ cười luôn ở trên môi và trái tim luôn đầy ắp niềm vui. 💗',
+'Gửi bạn một bó hồng, một lời chúc và thật nhiều thương mến. Chúc ngày 20/10 ngập tràn hạnh phúc! ✨',
+'Mong bạn luôn tự tin tỏa sáng theo cách riêng, được trân trọng, được nâng niu và luôn hạnh phúc. 🌷',
+'Chúc cô gái tuyệt vời có một ngày thật ngọt ngào, nhận được thật nhiều yêu thương và luôn nhớ rằng mình rất đặc biệt. 💖'
+];
+let index=0;
+document.getElementById('wish').addEventListener('click',()=>{
+ index=(index+1)%wishes.length;
+ const m=document.getElementById('message');
+ m.style.opacity=0;
+ setTimeout(()=>{m.innerHTML=wishes[index];m.style.opacity=1},250);
+ for(let i=0;i<12;i++)setTimeout(fall,i*100);
+});
+document.getElementById('again').addEventListener('click',()=>{
+ document.body.classList.remove('open');
+ clearInterval(rainTimer);
+ index=0;
+ document.getElementById('message').innerHTML=wishes[0];
+ window.scrollTo({top:0,behavior:'smooth'});
+});
+</script>
 </body>
 </html>
