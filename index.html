@@ -3,310 +3,664 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Một bông hồng dành cho Ngọc Anh 🌹</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#260817">
+<title>Một bông hồng dành riêng cho em 🌹</title>
+
 <style>
-*{box-sizing:border-box}
-body{
- margin:0;min-height:100vh;overflow:hidden;
- display:flex;align-items:center;justify-content:center;
- background:radial-gradient(ellipse at 50% 48%,#53172f,#210b20 65%,#100711);
- color:#ffe8f0;font-family:Georgia,serif;text-align:center
+* {
+  box-sizing: border-box;
 }
-#stars,#rain{position:fixed;inset:0;overflow:hidden;pointer-events:none}
-.star{position:absolute;color:#ffe2ae;animation:twinkle 2s infinite alternate}
-@keyframes twinkle{to{opacity:.15;transform:scale(.5)}}
-main{position:relative;z-index:1;width:100%;max-width:600px;padding:20px 12px}
-.small{font:11px Arial;letter-spacing:4px;color:#ffb2cd}
-h1{font-size:clamp(28px,6vw,42px);font-weight:normal;margin:14px 0 5px}
-.subtitle{font:14px/1.8 Arial;color:#e9bacb}
-.stage{height:min(62vh,480px);min-height:340px;position:relative;display:grid;place-items:center}
-svg{width:min(94vw,430px);height:100%;overflow:visible}
-#rose{opacity:0;transition:opacity .5s}
-body.open #rose{opacity:1}
-.stem{
- fill:none;stroke:#41945a;stroke-width:5;stroke-linecap:round;
- stroke-dasharray:300;stroke-dashoffset:300
+
+:root {
+  --pink: #ff5c97;
+  --light-pink: #ffd6e5;
 }
-body.open .stem{animation:grow 2s ease-out forwards}
-@keyframes grow{to{stroke-dashoffset:0}}
-.leaf{
- fill:#267848;stroke:#65b879;stroke-width:1.5;
- transform-box:fill-box;transform-origin:bottom center;
- opacity:0;transform:scale(0)
+
+html {
+  min-height: 100%;
+  background: #260817;
 }
-body.open .leaf{animation:leafOpen .9s ease-out forwards}
-@keyframes leafOpen{to{opacity:1;transform:scale(1)}}
-.petal{
- opacity:0;transform-box:fill-box;transform-origin:center;
- transform:scale(.05) rotate(-25deg)
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(ellipse at 50% 38%, #641638 0%, #3b0c26 45%, #180611 100%);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
 }
-body.open .petal{animation:petalOpen 1.1s cubic-bezier(.2,.8,.2,1) forwards}
-@keyframes petalOpen{
- 0%{opacity:0;transform:scale(.05) rotate(-25deg)}
- 65%{opacity:1;transform:scale(1.12) rotate(5deg)}
- 100%{opacity:1;transform:scale(1) rotate(0)}
+
+.page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 14px max(24px, env(safe-area-inset-bottom));
+  position: relative;
+  isolation: isolate;
 }
-#bud{
- position:absolute;z-index:4;border:0;background:none;
- color:#ff4a82;font-size:100px;cursor:pointer;
- filter:drop-shadow(0 0 20px #ff3f7d);
- animation:heartbeat 1.15s infinite
+
+.glow {
+  position: fixed;
+  width: 280px;
+  height: 280px;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  background: #ff347a;
+  filter: blur(100px);
+  opacity: .17;
+  pointer-events: none;
+  z-index: -1;
 }
-#bud span{display:block;font:11px Arial;letter-spacing:2px;color:#ffd1e0;margin-top:12px}
-body.open #bud{opacity:0;pointer-events:none;transition:opacity .7s}
-@keyframes heartbeat{
- 0%,100%{transform:scale(1)}
- 15%{transform:scale(1.13)}
- 30%{transform:scale(.98)}
- 45%{transform:scale(1.18)}
+
+/* TIÊU ĐỀ */
+.heading {
+  width: 100%;
+  max-width: 450px;
+  margin: 0 0 5px;
+  font-size: clamp(22px, 5.5vw, 31px);
+  line-height: 1.4;
+  text-align: center;
+  color: #ffe4ed;
+  text-shadow: 0 0 18px #ff5c97a0;
+  letter-spacing: .3px;
 }
-.message{
- max-width:460px;margin:0 auto 16px;
- font-size:clamp(17px,3.5vw,22px);line-height:1.7;
- color:#ffe2ec;opacity:0;transition:opacity 1s 1.8s
+
+.subtitle {
+  margin: 3px 0 0;
+  color: #ff9cbe;
+  text-align: center;
+  font-size: clamp(27px, 7vw, 36px);
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-shadow: 0 0 15px #ff4d8d99;
 }
-body.open .message{opacity:1}
-.message em{font-style:normal;color:#ff8eb5}
-.action{
- border:1px solid #ffafc8;border-radius:30px;padding:13px 22px;
- color:white;background:linear-gradient(120deg,#a9164c,#ed4c80);
- cursor:pointer;font-size:13px;box-shadow:0 5px 25px #ff397b30
+
+/* KHU VỰC HOA HỒNG */
+.flower-stage {
+  position: relative;
+  width: min(94vw, 430px);
+  height: min(62vh, 470px);
+  min-height: 340px;
+  max-height: 470px;
+  margin: 0 auto;
+  flex: 0 0 auto;
 }
-.fall{
- position:absolute;top:-30px;animation:fall linear forwards;
- text-shadow:0 0 12px currentColor
+
+#rose {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  overflow: visible;
 }
-@keyframes fall{
- 0%{transform:translate(0,-5vh) rotate(0);opacity:0}
- 15%{opacity:.9}
- 100%{transform:translate(var(--drift),110vh) rotate(var(--spin));opacity:0}
+
+.stem {
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
 }
-@media(max-height:650px){
- main{padding:8px}
- .stage{height:48vh;min-height:260px}
- h1{margin:6px}
+
+body.open .stem {
+  animation: drawStem 1.8s ease forwards;
+}
+
+@keyframes drawStem {
+  to { stroke-dashoffset: 0; }
+}
+
+.leaf {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+}
+
+body.open .leaf {
+  animation: leafGrow .7s ease forwards;
+}
+
+body.open .leaf.left {
+  animation-delay: 1.05s;
+}
+
+body.open .leaf.right {
+  animation-delay: 1.35s;
+}
+
+@keyframes leafGrow {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* CÁNH HOA NỞ DẦN */
+.petal {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  transform: scale(.05) rotate(-8deg);
+}
+
+body.open .petal {
+  animation: petalOpen 1.1s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+@keyframes petalOpen {
+  0% {
+    opacity: 0;
+    transform: scale(.05) rotate(-8deg);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.08) rotate(3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+/* TRÁI TIM BAN ĐẦU */
+#heartStart {
+  position: absolute;
+  z-index: 10;
+  top: 37%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 112px;
+  height: 112px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity .6s, visibility .6s;
+}
+
+.heart {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 0 12px #ff477f);
+  animation: heartBeat 1.1s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.13); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.1); }
+}
+
+.heart-label {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 7px);
+  transform: translateX(-50%);
+  width: 190px;
+  color: #ffd6e5;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px #ff5c97;
+  white-space: nowrap;
+}
+
+body.open #heartStart {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* LỜI CHÚC VÀ NÚT NHẬN THÊM */
+.wish-box {
+  position: relative;
+  z-index: 20;
+  width: min(92%, 370px);
+  margin: -7px auto 0;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px);
+  transition:
+    opacity .7s ease,
+    transform .7s ease,
+    visibility .7s ease;
+  pointer-events: none;
+}
+
+body.open .wish-box {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-8px);
+  pointer-events: auto;
+}
+
+#wish {
+  margin: 0 auto 14px;
+  color: #fff0f5;
+  font-size: clamp(17px, 4.5vw, 21px);
+  font-weight: 500;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  text-shadow: 0 2px 12px #ff4d8d66;
+}
+
+#moreWish {
+  position: relative;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  max-width: 100%;
+  padding: 14px 24px;
+  margin: 0 auto;
+  border: 1px solid #ffffff65;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #ff78a6, #ff347b);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 5px 20px #ff2f7855;
+  transition: transform .15s, box-shadow .2s;
+}
+
+#moreWish:active {
+  transform: scale(.96);
+  box-shadow: 0 2px 9px #ff2f7880;
+}
+
+.footer {
+  position: relative;
+  z-index: 2;
+  margin: 15px 0 0;
+  color: #e9a7c1;
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: .7px;
+}
+
+/* CÁNH HOA VÀ TRÁI TIM RƠI */
+.falling {
+  position: fixed;
+  top: -30px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  animation: fallDown linear forwards;
+}
+
+@keyframes fallDown {
+  0% {
+    transform: translate3d(0, -20px, 0) rotate(0);
+    opacity: 0;
+  }
+  10% { opacity: .9; }
+  90% { opacity: .7; }
+  100% {
+    transform: translate3d(var(--drift), 110vh, 0) rotate(480deg);
+    opacity: 0;
+  }
+}
+
+/* TỐI ƯU ĐIỆN THOẠI */
+@media (max-width: 600px) {
+  .page {
+    justify-content: flex-start;
+    padding-top: max(22px, env(safe-area-inset-top));
+  }
+
+  .heading {
+    max-width: 360px;
+  }
+
+  .flower-stage {
+    width: min(100vw, 390px);
+    height: min(49vh, 390px);
+    min-height: 300px;
+    margin-top: 3px;
+  }
+
+  #heartStart {
+    width: 96px;
+    height: 96px;
+    top: 37%;
+  }
+
+  .wish-box {
+    width: min(94%, 370px);
+    margin-top: 3px;
+    padding-bottom: 8px;
+  }
+
+  body.open .wish-box {
+    transform: translateY(-5px);
+  }
+
+  #wish {
+    margin-bottom: 12px;
+  }
+
+  #moreWish {
+    min-height: 54px;
+    padding: 14px 22px;
+    font-size: 16px;
+  }
+
+  .footer {
+    margin-top: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
 }
 </style>
 </head>
+
 <body>
-<div id="stars"></div>
-<div id="rain"></div>
+<div class="glow"></div>
 
-<main>
- <div class="small">GỬI MỘT CHÚT DỊU DÀNG · 20/10</div>
- <h1>Một bông hồng<br>dành riêng cho Ngọc Anh</h1>
- <p class="subtitle">Anh yêu em rất nhiều</p>
+<main class="page">
 
- <section class="stage">
-  <button id="bud" aria-label="Chạm để hoa nở">
-   ♥<span>CHẠM VÀO TRÁI TIM ✨</span>
-  </button>
+  <h1 class="heading">Một bông hồng dành riêng cho em</h1>
+  <p class="subtitle">Ngọc Anh</p>
 
-  <svg viewBox="0 0 400 470" role="img" aria-label="Một bông hồng đỏ đang nở">
-   <defs>
-    <linearGradient id="red" x1="0" y1="0" x2="1" y2="1">
-     <stop stop-color="#ffb9ce"/>
-     <stop offset=".35" stop-color="#f63269"/>
-     <stop offset=".72" stop-color="#c30a43"/>
-     <stop offset="1" stop-color="#650823"/>
-    </linearGradient>
-    <linearGradient id="light" x1="0" y1="0" x2="1" y2="1">
-     <stop stop-color="#ffe0e9"/>
-     <stop offset=".45" stop-color="#ff739c"/>
-     <stop offset="1" stop-color="#b90a43"/>
-    </linearGradient>
-    <linearGradient id="green" x1="0" y1="0" x2="1" y2="0">
-     <stop stop-color="#18552f"/>
-     <stop offset=".5" stop-color="#70c778"/>
-     <stop offset="1" stop-color="#215f37"/>
-    </linearGradient>
-    <radialGradient id="center">
-     <stop stop-color="#ffb2c8"/>
-     <stop offset=".45" stop-color="#e51d57"/>
-     <stop offset="1" stop-color="#81082f"/>
-    </radialGradient>
-   </defs>
+  <section class="flower-stage" aria-label="Bông hồng dành cho Ngọc Anh">
 
-   <g id="rose">
-    <!-- Thân cây mọc lên -->
-    <path class="stem" d="M200 195 C197 260 211 325 200 425"/>
+    <svg id="rose" viewBox="0 0 400 520"
+         xmlns="http://www.w3.org/2000/svg"
+         role="img" aria-label="Hoa hồng vẽ bằng mã">
 
-    <!-- Lá mở ra sau khi thân mọc -->
-    <path class="leaf" style="animation-delay:1.1s"
-      d="M202 315 C164 304 142 278 145 254
-      C178 259 201 281 202 315Z"/>
-    <path class="leaf" style="animation-delay:1.35s"
-      d="M205 355 C238 334 258 309 256 287
-      C225 294 207 321 205 355Z"/>
-    <path class="leaf" style="animation-delay:1.5s"
-      d="M199 386 C171 373 160 355 163 339
-      C185 344 198 363 199 386Z"/>
+      <defs>
+        <linearGradient id="stemColor" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#245a36"/>
+          <stop offset=".5" stop-color="#62b76b"/>
+          <stop offset="1" stop-color="#17462e"/>
+        </linearGradient>
 
-    <!-- Đài hoa -->
-    <g class="petal" style="animation-delay:.45s">
-     <path d="M200 203 Q162 187 151 164
-       Q185 174 200 192 Q215 174 249 164
-       Q238 190 200 203Z" fill="url(#green)"/>
-    </g>
+        <linearGradient id="leafColor" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#a6e68c"/>
+          <stop offset=".5" stop-color="#39985a"/>
+          <stop offset="1" stop-color="#145332"/>
+        </linearGradient>
 
-    <!-- CÁNH NGOÀI: mở rộng ra hai bên -->
-    <g class="petal" style="animation-delay:.65s">
-     <path d="M199 191
-       C158 199 117 169 125 130
-       C130 105 154 97 171 116
-       C184 130 187 158 199 191Z"
-       fill="url(#red)"/>
-     <path d="M137 126 Q140 108 157 112"
-       fill="none" stroke="#ffd4e1" stroke-width="2" opacity=".8"/>
-    </g>
+        <linearGradient id="petalOuter" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ff9bbd"/>
+          <stop offset=".45" stop-color="#f43f79"/>
+          <stop offset="1" stop-color="#a90e48"/>
+        </linearGradient>
 
-    <g class="petal" style="animation-delay:.8s">
-     <path d="M201 191
-       C242 199 283 169 275 130
-       C270 105 246 97 229 116
-       C216 130 213 158 201 191Z"
-       fill="url(#red)"/>
-     <path d="M263 126 Q260 108 243 112"
-       fill="none" stroke="#ffd4e1" stroke-width="2" opacity=".8"/>
-    </g>
+        <linearGradient id="petalLight" x1="0" y1="0" x2=".8" y2="1">
+          <stop offset="0" stop-color="#ffd0df"/>
+          <stop offset=".5" stop-color="#ff6898"/>
+          <stop offset="1" stop-color="#df1f62"/>
+        </linearGradient>
 
-    <!-- Cánh lớn phía sau -->
-    <g class="petal" style="animation-delay:1s">
-     <path d="M198 188
-       C163 157 166 104 197 78
-       C213 64 231 84 225 111
-       C220 139 208 165 198 188Z"
-       fill="url(#light)"/>
-     <path d="M201 188
-       C237 157 234 104 203 78
-       C187 64 169 84 175 111
-       C180 139 192 165 201 188Z"
-       fill="url(#red)"/>
-    </g>
+        <linearGradient id="petalDark" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ff79a5"/>
+          <stop offset=".55" stop-color="#d91b5a"/>
+          <stop offset="1" stop-color="#790d3a"/>
+        </linearGradient>
 
-    <!-- Cánh hai bên lớp giữa -->
-    <g class="petal" style="animation-delay:1.2s">
-     <path d="M198 190
-       C151 178 139 137 163 111
-       C181 93 201 119 202 145
-       C205 164 202 179 198 190Z"
-       fill="url(#red)"/>
-    </g>
-    <g class="petal" style="animation-delay:1.35s">
-     <path d="M202 190
-       C249 178 261 137 237 111
-       C219 93 199 119 198 145
-       C195 164 198 179 202 190Z"
-       fill="url(#light)"/>
-    </g>
+        <filter id="flowerGlow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="7" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
 
-    <!-- Cánh cuộn vào trong -->
-    <g class="petal" style="animation-delay:1.55s">
-     <path d="M199 187
-       C171 171 171 143 188 131
-       C201 122 212 140 205 153
-       C222 140 237 156 225 173
-       C217 185 207 188 199 187Z"
-       fill="url(#red)"/>
-    </g>
+      <!-- Thân hoa -->
+      <path class="stem"
+        d="M200 488 C197 410 211 345 202 279 C199 250 202 230 205 215"
+        fill="none" stroke="url(#stemColor)"
+        stroke-width="8" stroke-linecap="round"/>
 
-    <g class="petal" style="animation-delay:1.75s">
-     <path d="M198 181
-       C183 164 191 145 203 147
-       C218 149 215 164 204 170
-       C223 163 230 180 215 190
-       C207 195 201 190 198 181Z"
-       fill="url(#center)"/>
-    </g>
+      <!-- Lá trái -->
+      <g class="leaf left">
+        <path d="M202 383 C164 365 128 376 117 340
+                 C151 333 186 346 202 383Z"
+          fill="url(#leafColor)" stroke="#a2dc8a" stroke-width="1.2"/>
+        <path d="M126 343 Q162 354 198 380"
+          fill="none" stroke="#c2efa4" stroke-width="1.5"/>
+      </g>
 
-    <!-- Cuộn cánh nhỏ ở tâm -->
-    <g class="petal" style="animation-delay:1.95s">
-     <path d="M198 177
-       C187 163 198 153 207 160
-       C215 166 204 174 200 170
-       C211 175 207 185 199 182Z"
-       fill="#ffb6cb"/>
-     <path d="M199 177 Q205 171 201 166"
-       fill="none" stroke="#ffecf2" stroke-width="1.5"/>
-    </g>
+      <!-- Lá phải -->
+      <g class="leaf right">
+        <path d="M203 331 C228 294 270 292 287 263
+                 C299 306 255 334 203 331Z"
+          fill="url(#leafColor)" stroke="#a2dc8a" stroke-width="1.2"/>
+        <path d="M211 326 Q251 303 284 270"
+          fill="none" stroke="#c2efa4" stroke-width="1.5"/>
+      </g>
 
-    <!-- Đường sáng trên cánh -->
-    <path d="M164 119 Q179 103 190 126"
-      fill="none" stroke="#ffe1e9" stroke-width="2" opacity=".65"/>
-    <path d="M236 119 Q221 103 210 126"
-      fill="none" stroke="#ffe1e9" stroke-width="2" opacity=".65"/>
-   </g>
+      <!-- Đài hoa -->
+      <path class="petal" style="animation-delay:.6s"
+        d="M178 225 L158 196 L191 211 L207 182
+           L216 213 L249 194 L230 227Z"
+        fill="#398a4c"/>
 
-   <!-- Hạt sáng quanh bông hoa -->
-   <g fill="#ffe4af">
-    <circle cx="107" cy="157" r="2"/>
-    <circle cx="293" cy="142" r="2"/>
-    <circle cx="135" cy="211" r="1.5"/>
-    <circle cx="272" cy="222" r="2"/>
-    <circle cx="168" cy="62" r="1.5"/>
-    <circle cx="241" cy="55" r="1.5"/>
-   </g>
-  </svg>
- </section>
+      <!-- Cánh hoa ngoài -->
+      <g filter="url(#flowerGlow)">
+        <path class="petal" style="animation-delay:.15s"
+          d="M204 218
+             C159 224 128 194 135 155
+             C139 120 172 103 199 130
+             C222 95 268 107 282 143
+             C302 190 262 220 204 218Z"
+          fill="url(#petalOuter)"/>
 
- <p class="message" id="message">
-  Chúc em luôn <em>xinh đẹp, rạng rỡ</em> và bình an.
-  Mong mỗi ngày của em đều dịu dàng như cánh hoa,
-  ngọt ngào như tình yêu và ngập tràn hạnh phúc. 🌹
- </p>
+        <path class="petal" style="animation-delay:.3s"
+          d="M203 212
+             C164 209 144 180 156 148
+             C168 118 194 120 207 147
+             C228 119 257 129 267 157
+             C279 190 244 214 203 212Z"
+          fill="url(#petalDark)"/>
 
- <button class="action" id="wish">♡ Nhận thêm một lời chúc</button>
+        <!-- Cánh trái -->
+        <path class="petal" style="animation-delay:.45s"
+          d="M201 209
+             C169 190 166 157 184 138
+             C205 116 225 140 224 164
+             C222 183 213 198 201 209Z"
+          fill="url(#petalLight)"/>
+
+        <!-- Cánh phải -->
+        <path class="petal" style="animation-delay:.6s"
+          d="M204 211
+             C222 180 245 170 258 183
+             C273 201 245 218 204 211Z"
+          fill="url(#petalOuter)"/>
+
+        <!-- Cánh giữa -->
+        <path class="petal" style="animation-delay:.75s"
+          d="M199 202
+             C181 184 183 161 201 151
+             C221 142 239 160 229 179
+             C222 192 210 199 199 202Z"
+          fill="url(#petalLight)"/>
+
+        <path class="petal" style="animation-delay:.9s"
+          d="M202 199
+             C190 184 197 166 210 165
+             C225 165 230 180 220 191
+             C215 197 209 200 202 199Z"
+          fill="url(#petalDark)"/>
+
+        <!-- Cánh cuộn trong cùng -->
+        <path class="petal" style="animation-delay:1.05s"
+          d="M203 190
+             C194 181 201 173 209 175
+             C216 177 216 185 209 190
+             C219 188 222 180 217 174
+             C208 164 192 172 192 183
+             C192 193 201 198 211 195Z"
+          fill="url(#petalLight)"/>
+      </g>
+
+      <!-- Điểm sáng trên cánh -->
+      <path d="M150 154 Q157 126 181 127"
+        fill="none" stroke="#ffd5e4" stroke-width="2"
+        stroke-linecap="round" opacity=".55"/>
+      <path d="M231 123 Q255 129 264 151"
+        fill="none" stroke="#ffd5e4" stroke-width="2"
+        stroke-linecap="round" opacity=".5"/>
+    </svg>
+
+    <!-- Trái tim bấm để hoa nở -->
+    <button id="heartStart" type="button" aria-label="Bấm trái tim để mở hoa">
+      <svg class="heart" viewBox="0 0 100 100" aria-hidden="true">
+        <defs>
+          <linearGradient id="heartGradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#ffb1cc"/>
+            <stop offset=".5" stop-color="#ff3f83"/>
+            <stop offset="1" stop-color="#d70d59"/>
+          </linearGradient>
+        </defs>
+        <path d="M50 87
+                 C41 78 10 55 10 32
+                 C10 7 39 3 50 24
+                 C62 3 90 7 90 32
+                 C90 55 60 78 50 87Z"
+          fill="url(#heartGradient)"
+          stroke="#ffd5e4" stroke-width="2"/>
+        <path d="M24 28 Q27 17 38 21"
+          fill="none" stroke="#fff" stroke-width="4"
+          stroke-linecap="round" opacity=".8"/>
+      </svg>
+      <span class="heart-label">Anh yêu em ❤️</span>
+    </button>
+
+  </section>
+
+  <!-- Chỉ hiện sau khi bấm trái tim -->
+  <section class="wish-box" id="wishBox" aria-live="polite">
+    <p id="wish">
+      Chúc em ngày 20/10 thật xinh đẹp, hạnh phúc
+      và luôn được anh yêu thương! 💖
+    </p>
+
+    <button id="moreWish" type="button">
+      💌 Nhận thêm lời chúc
+    </button>
+  </section>
+
+  <p class="footer">Một bông hoa nhỏ, gửi ngàn yêu thương 🌹</p>
+
 </main>
 
 <script>
-const stars=document.getElementById('stars');
-const rain=document.getElementById('rain');
+const body = document.body;
+const heartButton = document.getElementById("heartStart");
+const wishText = document.getElementById("wish");
+const moreWishButton = document.getElementById("moreWish");
 
-for(let i=0;i<75;i++){
- const s=document.createElement('span');
- s.className='star';s.textContent='✦';
- s.style.left=Math.random()*100+'%';
- s.style.top=Math.random()*100+'%';
- s.style.fontSize=(4+Math.random()*8)+'px';
- s.style.animationDelay=Math.random()*3+'s';
- stars.appendChild(s);
-}
-
-function fall(){
- const el=document.createElement('span');
- el.className='fall';
- el.textContent=Math.random()>.45?'♥':['❀','✿','🌸'][Math.floor(Math.random()*3)];
- el.style.left=Math.random()*100+'%';
- el.style.fontSize=(12+Math.random()*17)+'px';
- el.style.color=Math.random()>.5?'#ff8fb5':'#ffd1e0';
- el.style.animationDuration=(6+Math.random()*7)+'s';
- el.style.setProperty('--drift',((Math.random()-.5)*150)+'px');
- el.style.setProperty('--spin',((Math.random()-.5)*450)+'deg');
- rain.appendChild(el);
- setTimeout(()=>el.remove(),14000);
-}
-
-let timer;
-document.getElementById('bud').addEventListener('click',()=>{
- document.body.classList.add('open');
- for(let i=0;i<25;i++)setTimeout(fall,i*120);
- clearInterval(timer);
- timer=setInterval(fall,550);
-});
-
-const wishes=[
-'Chúc em luôn <em>xinh đẹp, rạng rỡ</em> và bình an. Mong những điều ngọt ngào nhất sẽ đến với em. 🌹',
-'Mong nụ cười luôn ở trên môi, niềm vui luôn trong tim và mỗi ngày đều có một điều đáng nhớ. 💗',
-'Em xứng đáng với mọi điều dịu dàng nhất trên thế gian. Chúc em một ngày 20/10 thật hạnh phúc. 🌷',
-'Mong em luôn tự tin tỏa sáng, được yêu thương, trân trọng và nâng niu theo cách em xứng đáng. ✨'
+const wishes = [
+  "Chúc em ngày 20/10 thật xinh đẹp, hạnh phúc và luôn được anh yêu thương! 💖",
+  "Ngọc Anh à, mong mọi điều dịu dàng nhất sẽ đến với em, hôm nay và cả những ngày sau. 🌷",
+  "Chúc cô gái của anh luôn rạng rỡ như hoa hồng, tự tin và vui vẻ mỗi ngày. 🌹",
+  "Anh mong em có thật nhiều niềm vui, luôn được trân trọng và yêu thương. 💕",
+  "Mong nụ cười luôn nở trên môi em và những điều tốt đẹp luôn ở bên em. ✨",
+  "Chúc em luôn bình an, mạnh mẽ và gặp thật nhiều may mắn trong cuộc sống. 🩷",
+  "Ngọc Anh, hãy luôn vui vẻ nhé. Anh mong mỗi ngày của em đều có thật nhiều điều đáng yêu. 🌸",
+  "Em xứng đáng với những điều đẹp đẽ nhất. Anh sẽ luôn mong em hạnh phúc! 💐",
+  "Nếu hoa hồng tượng trưng cho tình yêu, thì bông hoa này là dành riêng cho em. ❤️",
+  "Anh yêu em, hôm nay, ngày mai và cả những ngày sau nữa. 💗"
 ];
-let index=0;
-document.getElementById('wish').addEventListener('click',()=>{
- index=(index+1)%wishes.length;
- document.getElementById('message').innerHTML=wishes[index];
- for(let i=0;i<10;i++)setTimeout(fall,i*100);
+
+let wishIndex = 0;
+let opened = false;
+let fallingStarted = false;
+let fallingTimer = null;
+
+/* Bấm trái tim để hoa nở và hiện lời chúc */
+heartButton.addEventListener("click", function () {
+  if (opened) return;
+
+  opened = true;
+  body.classList.add("open");
+  startFallingPetals();
 });
+
+/* Mỗi lần bấm nút sẽ đổi lời chúc */
+moreWishButton.addEventListener("click", function () {
+  wishIndex = (wishIndex + 1) % wishes.length;
+
+  wishText.animate(
+    [
+      { opacity: 1, transform: "translateY(0)" },
+      { opacity: 0, transform: "translateY(7px)" }
+    ],
+    { duration: 180, fill: "forwards" }
+  ).onfinish = function () {
+    wishText.textContent = wishes[wishIndex];
+
+    wishText.animate(
+      [
+        { opacity: 0, transform: "translateY(7px)" },
+        { opacity: 1, transform: "translateY(0)" }
+      ],
+      { duration: 350, fill: "forwards" }
+    );
+  };
+});
+
+/* Tạo cánh hoa và trái tim rơi */
+function startFallingPetals() {
+  if (fallingStarted) return;
+  fallingStarted = true;
+
+  const symbols = ["🌸", "💗", "🌷", "💕"];
+
+  function createPetal() {
+    if (!body.classList.contains("open")) return;
+
+    const item = document.createElement("span");
+    item.className = "falling";
+    item.textContent = symbols[
+      Math.floor(Math.random() * symbols.length)
+    ];
+
+    item.style.left = Math.random() * 100 + "vw";
+    item.style.fontSize = (13 + Math.random() * 13) + "px";
+    item.style.animationDuration = (5 + Math.random() * 5) + "s";
+    item.style.setProperty(
+      "--drift",
+      (Math.random() * 150 - 75) + "px"
+    );
+
+    document.body.appendChild(item);
+
+    setTimeout(function () {
+      item.remove();
+    }, 11000);
+  }
+
+  for (let i = 0; i < 12; i++) {
+    setTimeout(createPetal, i * 180);
+  }
+
+  fallingTimer = setInterval(createPetal, 650);
+}
 </script>
 </body>
 </html>
